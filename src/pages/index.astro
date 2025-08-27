@@ -1,0 +1,135 @@
+---
+// Zona de script de Astro donde puedes importar componentes, datos, etc.
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content={Astro.generator} />
+    <title>CV - Karla Sofía Álvarez Gutiérrez</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #b3e5fc;
+        margin: 0;
+        padding: 0;
+        color: #002b36;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        padding: 40px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 2em;
+      }
+      h2 {
+        border-bottom: 2px solid #ff9800;
+        padding-bottom: 5px;
+        margin-top: 30px;
+        font-size: 1.2em;
+      }
+      .left, .right {
+        background: #e1f5fe;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .competency {
+        margin-bottom: 15px;
+      }
+      .bar {
+        background: #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 8px;
+      }
+      .bar-fill {
+        background: #ff9800;
+        height: 8px;
+      }
+      .project {
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- COLUMNA IZQUIERDA -->
+      <div class="left">
+        <h1>Karla Sofía Álvarez Gutiérrez</h1>
+        <h3 style="color:#ff9800;">Estudiante de Ingeniería en Sistemas Computacionales</h3>
+
+        <h2>Perfil</h2>
+        <p>Estudiante de 5º semestre de Ingeniería en Sistemas Computacionales en la Universidad Autónoma de Tamaulipas. Me interesa el desarrollo web y el diseño, aunque también tengo conocimientos sólidos en programación y bases de datos. Soy creativa, organizada y me gustaría en el futuro enfocarme en la creación de videojuegos.</p>
+
+        <h2>Proyectos Académicos</h2>
+        <div class="project">
+          <h4>Sistema de punto de venta (Java + MySQL)</h4>
+          <p>Proyecto en equipo en Eclipse (3º semestre). Se desarrolló un sistema con base de datos propia para gestionar ventas e inventario.</p>
+        </div>
+        <div class="project">
+          <h4>Aplicación y página web para consultorio dental (React + Visual Studio)</h4>
+          <p>Proyecto en equipo en la materia de Desarrollo Web I (4º semestre). Permite agendar citas y gestionar pacientes para un consultorio dental. Me desempeñé en el frontend de la aplicación y la página web.</p>
+        </div>
+
+        <h2>Cursos y actividades</h2>
+        <ul>
+          <li>Curso de gestión de proyectos con Trello</li>
+          <li>Introducción a HTML y JavaScript</li>
+          <li>Manejo de Power BI para análisis de datos</li>
+        </ul>
+      </div>
+
+      <!-- COLUMNA DERECHA -->
+      <div class="right">
+        <h2>Competencias</h2>
+        <div class="competency">
+          Desarrollo Web (React, HTML, CSS, JS)
+          <div class="bar"><div class="bar-fill" style="width: 85%;"></div></div>
+        </div>
+        <div class="competency">
+          Programación en Java y Python
+          <div class="bar"><div class="bar-fill" style="width: 80%;"></div></div>
+        </div>
+        <div class="competency">
+          MySQL y bases de datos
+          <div class="bar"><div class="bar-fill" style="width: 75%;"></div></div>
+        </div>
+        <div class="competency">
+          Diseño creativo / interfaces
+          <div class="bar"><div class="bar-fill" style="width: 90%;"></div></div>
+        </div>
+        <div class="competency">
+          Power BI y análisis de datos
+          <div class="bar"><div class="bar-fill" style="width: 70%;"></div></div>
+        </div>
+
+        <h2>Idiomas</h2>
+        <p>Español (nativo)</p>
+        <p>Inglés (avanzado)</p>
+
+        <h2>Educación</h2>
+        <p><b>Ingeniería en Sistemas Computacionales</b><br>
+           Universidad Autónoma de Tamaulipas<br>
+           2022 – Actualidad (5º semestre)</p>
+
+        <h2>Contacto</h2>
+        <p>Dirección: Tamaulipas, México</p>
+        <p>Tel: +52 XXX XXX XXXX</p>
+        <p>Email: ks.alvarez.g@gmail.com</p>
+        <p>LinkedIn: linkedin.com/in/ksalvarez</p>
+        <p>GitHub: https://github.com/hdjska999</p>
+        <p>Nacionalidad: Mexicana</p>
+        <p>Fecha / Lugar de nacimiento: 2005 – Veracruz, México</p>
+      </div>
+    </div>
+  </body>
+</html>
