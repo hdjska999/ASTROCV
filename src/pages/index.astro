@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content={Astro.generator} />
     <title>CV - Karla Sofía Álvarez Gutiérrez</title>
+    <!-- Librería html2pdf para la descarga del CV como PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -22,6 +24,10 @@
         grid-template-columns: 2fr 1fr;
         gap: 20px;
         padding: 40px;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1200px;
+        box-sizing: border-box;
       }
       h1 {
         margin: 0;
@@ -58,9 +64,145 @@
         margin-bottom: 15px;
         box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
       }
+      .download-btn {
+        background-color: #ff9800;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        display: block;
+        margin: 20px auto;
+        transition: background-color 0.3s ease;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+      }
+      .download-btn:hover {
+        background-color: #f57c00;
+      }
+      /* Media query para dispositivos móviles */
+      @media screen and (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+          padding: 20px;
+        }
+        
+        h1 {
+          font-size: 1.8em;
+        }
+        
+        h3 {
+          font-size: 1.2em;
+        }
+      }
+      
+      /* Media query para pantallas más pequeñas */
+      @media screen and (max-width: 480px) {
+        .container {
+          padding: 15px;
+        }
+        
+        h1 {
+          font-size: 1.5em;
+        }
+        
+        .project {
+          padding: 10px;
+        }
+      }
+      
+      /* Estilos para impresión y PDF */
+      @media print {
+        .download-btn {
+          display: none;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+          background-color: white;
+        }
+        .container {
+          padding: 5px;
+          gap: 10px;
+          max-width: 210mm; /* Ancho A4 solo para impresión */
+        }
+        h2 {
+          margin-top: 15px;
+        }
+        .project {
+          margin-bottom: 8px;
+          padding: 10px;
+        }
+        p, li {
+          font-size: 0.95em;
+          margin: 5px 0;
+        }
+      }
     </style>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('downloadPDF').addEventListener('click', function() {
+          // Configuración de html2pdf
+          const options = {
+            margin: [0, 0, 0, 0], // [top, right, bottom, left] - sin márgenes
+            filename: 'CV_Karla_Sofia_Alvarez.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { 
+              scale: 1.5, 
+              useCORS: true,
+              letterRendering: true
+            },
+            jsPDF: { 
+              unit: 'mm', 
+              format: 'a4', 
+              orientation: 'portrait',
+              compress: true,
+              precision: 2
+            },
+            pagebreak: { mode: 'avoid-all' }
+          };
+          
+          // Ocultar temporalmente el botón para la versión PDF
+          const btn = document.getElementById('downloadPDF');
+          btn.style.display = 'none';
+          
+          // Crear una copia del contenedor para manipularlo para el PDF
+          const originalContainer = document.querySelector('.container');
+          const pdfContainer = originalContainer.cloneNode(true);
+          const tempDiv = document.createElement('div');
+          
+          // Aplicar estilos específicos para PDF pero sin afectar la visualización web
+          tempDiv.style.position = 'absolute';
+          tempDiv.style.left = '-9999px';
+          tempDiv.style.top = '-9999px';
+          tempDiv.appendChild(pdfContainer);
+          document.body.appendChild(tempDiv);
+          
+          // Aplicar estilos optimizados para PDF a la copia
+          pdfContainer.style.padding = '5px';
+          pdfContainer.style.maxWidth = '210mm';
+          pdfContainer.style.margin = '0 auto';
+          pdfContainer.style.width = '100%';
+          
+          const projects = pdfContainer.querySelectorAll('.project');
+          projects.forEach(proj => {
+            proj.style.marginBottom = '8px';
+            proj.style.padding = '10px';
+          });
+          
+          // Generar el PDF
+          html2pdf().set(options).from(pdfContainer).save().then(function() {
+            // Mostrar el botón nuevamente después de generar el PDF
+            btn.style.display = 'block';
+            // Eliminar el contenedor temporal
+            document.body.removeChild(tempDiv);
+          });
+        });
+      });
+    </script>
   </head>
   <body>
+    <button id="downloadPDF" class="download-btn">Descargar CV como PDF</button>
     <div class="container">
       <!-- COLUMNA IZQUIERDA -->
       <div class="left">
